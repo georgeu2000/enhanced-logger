@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
-  s.name        = 'enhanced_logger'
-  s.version     = '0.0.3'
+  s.name        = 'enhanced-logger'
+  s.version     = '0.0.4'
   s.date        = '2016-01-28'
   s.summary     = "Enhanced Logger"
   s.description = "Logs extra info."
