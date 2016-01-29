@@ -1,6 +1,6 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'enhanced_logger/verion'
+require 'enhanced_logger/version'
 
 Gem::Specification.new do |s|
   s.name        = 'enhanced-logger'
@@ -10,9 +10,7 @@ Gem::Specification.new do |s|
   s.description = "Logs extra info."
   s.authors     = ["George Ulmer"]
   s.email       = 'george@boost-media.com'
-  s.files       = [ "lib/enhanced_logger.rb", 
-                    "lib/enhanced_logger/logger.rb"
-                  ]
+  s.files       = `git ls-files`.split($/)
   s.homepage    = 'http://rubygems.org/gems/enhanced_logger'
   s.license     = 'MIT'
 end
