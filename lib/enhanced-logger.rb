@@ -1,4 +1,5 @@
-puts __FILE__
+require 'enhanced_logger/logger'
+
 
 module EnhancedLogger  
   require 'enhanced_logger/logger'
