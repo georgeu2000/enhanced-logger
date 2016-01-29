@@ -1,3 +1,5 @@
+puts 'EnhancedLogger loaded...'
+
 class EnhancedLogger
   attr_accessor :level
 
