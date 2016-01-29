@@ -1,5 +1,3 @@
-puts 'EnhancedLogger loaded...'
-
 module EnhancedLogger
   class Logger
     attr_accessor :level
@@ -9,11 +7,13 @@ module EnhancedLogger
     end
 
     def set_env env
+      puts __method__
       @request_id = env[ 'HTTP_X_REQUEST_ID' ]
       @remote_request_id = env[ 'HTTP_X_REMOTE_REQUEST_ID' ]
     end
 
     def clear_env
+      puts __method__
     end
 
     def info msg = nil

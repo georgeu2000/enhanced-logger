@@ -1,10 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 require 'enhanced_logger/version'
+require 'enhanced_logger/logger.rb'
+require 'enhanced_logger.rb'
 
 Gem::Specification.new do |s|
   s.name        = 'enhanced-logger'
   s.version     = EnhancedLogger::VERSION
-  s.date        = '2016-01-28'
+  s.date        = '2016-01-29'
   s.summary     = "Enhanced Logger"
   s.description = "Logs extra info."
   s.authors     = ["George Ulmer"]
