@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.authors     = ["George Ulmer"]
   s.email       = 'george@boost-media.com'
   s.files       = Dir['lib/**/*']
-  s.homepage    = 'http://rubygems.org/gems/enhanced_logger'
+  s.homepage    = 'https://github.com/iAmPlus/enhanced-logger'
   s.license     = 'MIT'
 end
