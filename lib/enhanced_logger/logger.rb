@@ -3,18 +3,17 @@ module EnhancedLogger
     attr_accessor :level
 
     def initialize dest
-      # puts __method__
       $stdout.sync = true
     end
 
     def set_env env
-      # puts __method__
       @request_id = env[ 'HTTP_X_REQUEST_ID' ]
       @remote_request_id = env[ 'HTTP_X_REMOTE_REQUEST_ID' ]
     end
 
     def clear_env
-      puts __method__
+      @request_id = nil
+      @remote_request_id = nil
     end
 
     def info msg = nil
