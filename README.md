@@ -1,4 +1,4 @@
-## Rails Integration
+### Rails Integration
 
 1. Gemfile:   
     Add `gem 'enhanced-logger'`  
@@ -16,11 +16,14 @@
 
 5. All HTTP requests to services running Enhanced Logger should set the X-Remote-Request-Id header.
 
-
-## Rack Integration
+----
+### Rack Integration
 
 1. Gemfile:   
     Add `gem 'enhanced-logger'`  
+
+2. App:  
+    `require 'enhanced-logger'`
 
 2. Before each request is processed:  
     `@logger = EnhancedLogger::Logger.new(STDOUT)`
@@ -30,9 +33,11 @@
     `@logger.clear_env`
 
 4. To use logger:  
-    `@logger.info  'log message'`
+    `@logger.info 'log message'`
 
+5. All HTTP requests to services running Enhanced Logger should set the X-Remote-Request-Id header.
 
-## rails_12factor gem
+----
+### rails_12factor gem
 
 This gem does not work with the rails_12factor gem. 
