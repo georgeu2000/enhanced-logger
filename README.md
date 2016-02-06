@@ -9,7 +9,7 @@
      `after_action  { logger.clear_env     }`  
 
 3. In `config/application.rb`, add  
-    `config.logger = EnhancedLogger::Logger.new(STDOUT)`
+    `config.logger = EnhancedLogger::Logger.new(EnhancedLogger::Logger::LEVELS[:info])`
 
 4. Use logger the same way as Rails logger.`  
      `Rails.logger.info 'log message'`
@@ -26,7 +26,7 @@
     `require 'enhanced-logger'`
 
 2. Before each request is processed:  
-    `@logger = EnhancedLogger::Logger.new(STDOUT)`
+    `@logger = EnhancedLogger::Logger.new(EnhancedLogger::Logger::LEVELS[:info])`
     `@logger.set_env( env )`
 
 3. After each request is processed:  
