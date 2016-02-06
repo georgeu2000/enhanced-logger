@@ -26,10 +26,10 @@
     `require 'enhanced-logger'`
 
 3. Instantiate the logger. For example:  
-```ruby
-class App
-  @logger = EnhancedLogger::Logger.new( EnhancedLogger::Logger::LEVELS[ :error ])
-```
+    ```ruby
+    class App
+      @logger = EnhancedLogger::Logger.new( EnhancedLogger::Logger::LEVELS[ :error ])
+    ```
 
 4. Before each request is processed:  
     `@logger.set_env( env )`
