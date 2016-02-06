@@ -31,16 +31,16 @@ class App
   @logger = EnhancedLogger::Logger.new( EnhancedLogger::Logger::LEVELS[ :error ])
 ```
 
-2. Before each request is processed:  
+4. Before each request is processed:  
     `@logger.set_env( env )`
 
-3. After each request is processed:  
+5. After each request is processed:  
     `@logger.clear_env`
 
-4. To use logger:  
+6. To use logger:  
     `@logger.info 'log message'`
 
-5. All HTTP requests to services running Enhanced Logger should set the X-Remote-Request-Id header.
+7. All HTTP requests to services running Enhanced Logger should set the X-Remote-Request-Id header.
 
 ----
 ### rails_12factor gem
