@@ -5,7 +5,7 @@ module EnhancedLogger
     attr_accessor :level
 
     def initialize level=:info
-      @level = LEVELS[ level ] || LEVELS[ :info ]
+      @level = level || :info
       $stdout.sync = true
     end
 
@@ -20,43 +20,43 @@ module EnhancedLogger
     end
 
     def debug?
-      @level <= LEVELS[ :debug ]
+      LEVELS[ @level ] <= LEVELS[ :debug ]
     end
 
     def info?
-      @level >= LEVELS[ :info ]
+      LEVELS[ @level ] <= LEVELS[ :info ]
     end
 
     def warn?
-      @level <= LEVELS[ :warn ]
+      LEVELS[ @level ] <= LEVELS[ :warn ]
     end
 
     def error?
-      @level <= LEVELS[ :error ]
+      LEVELS[ @level ] <= LEVELS[ :error ]
     end
 
     def fatal?
-      @level <= LEVELS[ :fatal ]
+      LEVELS[ @level ] <= LEVELS[ :fatal ]
     end
 
 
-    def debug msg
+    def debug msg=nil
       puts formatted( msg ) if debug?
     end
 
-    def info msg = nil
+    def info msg=nil
       puts formatted( msg ) if info?
     end
 
-    def warn msg
+    def warn msg=nil
       puts formatted( msg ) if warn?
     end
 
-    def error msg
+    def error msg=nil
       puts formatted( msg ) if error?
     end
 
-    def fatal msg
+    def fatal msg=nil
       puts formatted( msg ) if fatal?
     end
 
