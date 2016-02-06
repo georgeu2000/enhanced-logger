@@ -11,7 +11,7 @@
 3. In `config/application.rb`, add  
     `config.logger = EnhancedLogger::Logger.new(EnhancedLogger::Logger::LEVELS[:info])`
 
-4. Use logger the same way as Rails logger.`  
+4. Use logger the same way as Rails logger.  
      `Rails.logger.info 'log message'`
 
 5. All HTTP requests to services running Enhanced Logger should set the X-Remote-Request-Id header.
@@ -26,7 +26,7 @@
     `require 'enhanced-logger'`
 
 2. Before each request is processed:  
-    `@logger = EnhancedLogger::Logger.new(EnhancedLogger::Logger::LEVELS[:info])`
+    `@logger = EnhancedLogger::Logger.new(EnhancedLogger::Logger::LEVELS[:info])`  
     `@logger.set_env( env )`
 
 3. After each request is processed:  
