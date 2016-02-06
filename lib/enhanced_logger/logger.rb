@@ -1,8 +1,11 @@
 module EnhancedLogger
   class Logger
+    LEVELS = { debug:0, info:1, warn:2, error:3, fatal:4, unknown:5 }.freeze
+
     attr_accessor :level
 
-    def initialize dest
+    def initialize level=:info
+      @level = LEVELS[ level ] || LEVELS[ :info ]
       $stdout.sync = true
     end
 
@@ -16,30 +19,45 @@ module EnhancedLogger
       @remote_request_id = nil
     end
 
-    def info msg = nil
-      return unless msg
-
-      puts formatted( msg )
+    def debug?
+      @level <= LEVELS[ :debug ]
     end
 
     def info?
-      true
+      @level >= LEVELS[ :info ]
     end
 
-    def debug?
-      true
+    def warn?
+      @level <= LEVELS[ :warn ]
     end
+
+    def error?
+      @level <= LEVELS[ :error ]
+    end
+
+    def fatal?
+      @level <= LEVELS[ :fatal ]
+    end
+
 
     def debug msg
-      puts formatted( msg )
+      puts formatted( msg ) if debug?
+    end
+
+    def info msg = nil
+      puts formatted( msg ) if info?
+    end
+
+    def warn msg
+      puts formatted( msg ) if warn?
     end
 
     def error msg
-      puts formatted( msg )
+      puts formatted( msg ) if error?
     end
 
     def fatal msg
-      puts formatted( msg )
+      puts formatted( msg ) if fatal?
     end
 
     def formatter
