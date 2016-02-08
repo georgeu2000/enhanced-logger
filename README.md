@@ -9,10 +9,14 @@
      `after_action  { logger.clear_env     }`  
 
 3. In `config/application.rb`, add  
-    `config.logger = EnhancedLogger::Logger.new(EnhancedLogger::Logger::LEVELS[:info])`
+     `config.logger = EnhancedLogger::Logger.new(EnhancedLogger::Logger::LEVELS[:info])`
+
+4. Set log level in environment/production.rb, test.rb and/or development.rb.  
+   Log levels are :debug, :info, :warn, :error, and :fatal.  
+     `config.log_level = :debug`  
 
 4. Use logger the same way as Rails logger.  
-     `Rails.logger.info 'log message'`
+     `Rails.logger.info 'log message'`  
 
 5. All HTTP requests to services running Enhanced Logger should set the X-Remote-Request-Id header.
 
