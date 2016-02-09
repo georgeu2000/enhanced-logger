@@ -47,6 +47,13 @@
 7. All HTTP requests to services running Enhanced Logger should set the X-Remote-Request-Id header.
 
 ----
+### Initializer Options
+The initializer takes an options hash. To you exclude files from appearing as the caller,
+
+`exclude_files = {exclude_files:['log', 'log_helper']}`  
+`EnhancedLogger::Logger.new( EnhancedLogger::Logger::LEVELS[ :error ], exclude_files)`
+
+----
 ### rails_12factor gem
 
 This gem does not work with the rails_12factor gem. 
