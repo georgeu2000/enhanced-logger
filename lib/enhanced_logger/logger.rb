@@ -4,8 +4,9 @@ module EnhancedLogger
 
     attr_accessor :level
 
-    def initialize level=1
+    def initialize level=1, params={}
       @level = level
+      @exclude_files = Array( params[ :exclude_files ]).push filename
       $stdout.sync = true
     end
 
@@ -64,11 +65,21 @@ module EnhancedLogger
       ''
     end
 
+    def most_recent_caller
+      regex_str = '[' + @exclude_files.join( '|' ) + ']'
+      
+      caller.find{| c | c !~ %r+#{ regex_str }\.rb+ }.split( '/' ).last
+    end
+
 
     private
 
+    def filename
+      File.basename( __FILE__ ).gsub '.rb', ''
+    end
+
     def formatted msg
-      previous =  caller[ 1 ].split( '/' ).last
+      previous =  most_recent_caller
       parts  = previous.split( /[\.|:]/ )
       method = previous.split( /`/ ).last.gsub( "'", "" )
 
