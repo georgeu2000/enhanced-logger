@@ -1,12 +1,18 @@
 module EnhancedLogger
   class Logger
     LEVELS = { debug:0, info:1, warn:2, error:3, fatal:4, unknown:5 }.freeze
+    MAX_UUID_LENGTH = 64
 
     attr_accessor :level
 
-    def initialize level=1, params={}
+    def initialize level=1, options=nil
+      options ||= {}
+      @options = {}
+
       @level = level
-      @exclude_files = Array( params[ :exclude_files ]).push filename
+      @options[ :exclude_files   ] = Array( options[ :exclude_files ]).push filename
+      @options[ :uuid_log_length ] = options[ :uuid_log_length ]
+
       $stdout.sync = true
     end
 
@@ -66,7 +72,7 @@ module EnhancedLogger
     end
 
     def most_recent_caller
-      regex_str = '[' + @exclude_files.join( '|' ) + ']'
+      regex_str = '[' + @options[ :exclude_files ].join( '|' ) + ']'
       
       caller.find{| c | c !~ %r+#{ regex_str }\.rb+ }.split( '/' ).last
     end
@@ -83,7 +89,14 @@ module EnhancedLogger
       parts  = previous.split( /[\.|:]/ )
       method = previous.split( /`/ ).last.gsub( "'", "" )
 
-      "#{ @remote_request_id } #{ @request_id } #{ parts[ 0 ]} #{ method } #{ parts[ 2 ]}: #{ msg }"
+      remote_request_id = @remote_request_id.to_s[ 0..uuid_log_length-1 ]
+      request_id = @request_id.to_s[ 0..uuid_log_length-1 ]
+
+      "#{ remote_request_id } #{ request_id } #{ parts[ 0 ]} #{ method } #{ parts[ 2 ]}: #{ msg }"
+    end
+
+    def uuid_log_length
+      @options[ :uuid_log_length ] || MAX_UUID_LENGTH
     end
   end
 end
