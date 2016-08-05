@@ -73,8 +73,9 @@ module EnhancedLogger
 
     def most_recent_caller
       regex_str = '[' + @options[ :exclude_files ].join( '|' ) + ']'
-      
-      caller.find{| c | c !~ %r+#{ regex_str }\.rb+ }.split( '/' ).last
+
+      filtered = caller.find{| c | c !~ %r+#{ regex_str }\.rb+ }
+      filtered.nil? ? '' : filtered.split( '/' ).last
     end
 
 
