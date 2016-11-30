@@ -46,24 +46,28 @@ module EnhancedLogger
       @level <= LEVELS[ :fatal ]
     end
 
-
     def debug msg=nil
+      return if is_not_a_message?( msg )
       puts formatted( msg ) if debug?
     end
 
     def info msg=nil
+      return if is_not_a_message?( msg )
       puts formatted( msg ) if info?
     end
 
     def warn msg=nil
+      return if is_not_a_message?( msg )
       puts formatted( msg ) if warn?
     end
 
     def error msg=nil
+      return if is_not_a_message?( msg )
       puts formatted( msg ) if error?
     end
 
     def fatal msg=nil
+      return if is_not_a_message?( msg )
       puts formatted( msg ) if fatal?
     end
 
@@ -80,6 +84,10 @@ module EnhancedLogger
 
 
     private
+
+    def is_not_a_message?( msg )
+      msg.nil? || msg.is_a?( String ) && msg.empty?
+    end
 
     def filename
       File.basename( __FILE__ ).gsub '.rb', ''

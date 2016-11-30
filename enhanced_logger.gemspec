@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.files       = Dir['lib/**/*']
   s.homepage    = 'https://github.com/iAmPlus/enhanced-logger'
   s.license     = 'MIT'
+  s.add_development_dependency 'rspec', '~> 3.5.0'
 end
