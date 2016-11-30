@@ -5,7 +5,7 @@ require 'enhanced_logger/version'
 Gem::Specification.new do |s|
   s.name        = 'enhanced-logger'
   s.version     = EnhancedLogger::VERSION
-  s.date        = '2016-01-29'
+  s.date        = Time.now.strftime( "%Y-%m-%d" )
   s.summary     = "Enhanced Logger"
   s.description = "Logs extra info."
   s.authors     = ["George Ulmer"]
